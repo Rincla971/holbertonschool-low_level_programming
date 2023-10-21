@@ -1,44 +1,36 @@
 #include <stdio.h>
 
 /**
-*main - program that prints either number
-*or fizz or buzz or fizzBuzz
-*
-*
-*Return: returns 0
-*/
+ * main - entry point
+ * Description: print all numbers between 1-100 but replace some multiples
+ * Return:  0 if success
+ */
 
 int main(void)
 {
-	int num = 1;
+int multiple;
 
-	while (num++ < 100)
-	{
-		if ((num % 3 == 0) && (num % 5 == 0))
-		{
-			printf("FizzBuzz ");
-		}
-		else if ((num % 3) == 0)
-		{
-			printf("Fizz ");
-		}
-		else if ((num % 5) == 0)
-		{
-			if (num != 100)
-			{
-				printf("Buzz ");
-			}
-			else
-			{
-				printf("Buzz");
-			}
-		}
-		else
-		{
-			printf("%d ", num);
-		}
-	}
-	printf("\n");
-
-	return (0);
+for (multiple = 1; multiple <= 100; multiple++)
+{
+if ((multiple % 5) == 0 && (multiple % 3) == 0)
+{
+printf("FizzBuzz ");
+}
+else if ((multiple % 3) == 0)
+{
+printf("Fizz ");
+}
+else if ((multiple % 5) == 0)
+{
+printf("Buzz");
+if (multiple != 100)
+printf(" ");
+}
+else
+{
+printf("%d ", multiple);
+}
+}
+printf("\n");
+return (0);
 }
