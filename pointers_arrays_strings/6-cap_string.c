@@ -1,51 +1,35 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
- * _strlen - returns the length of a string
- * @s: string
- * Return: returns length as integer;
+ * cap_string - entry point
+ * @s: pointer
+ * Description: function that changes
+ * all lowercase letters of a string to uppercase.
+ * Return: convert string if success
  */
-
-int _strlen(char *s)
+char *cap_string(char *s)
 {
-	int len = 0;
+int i;
+int capitalize = 1;
 
-	while (*(s + len) != '\0')
-		len++;
-
-	return (len);
+for (i = 0; s[i] != '\0'; i++)
+{
+if (capitalize)
+{
+if (s[i] >= 'a' && s[i] <= 'z')
+{
+s[i] = s[i] - 32;
+}
+capitalize = 0;
 }
 
-/**
-* cap_string - function that capitalize first character of a word
-* @str: string to capitalize
-* Return: returns the capitalized string
-*/
-
-char *cap_string(char *str)
+if (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == ',' ||
+s[i] == ';' || s[i] == '.' || s[i] == '!' || s[i] == '?' ||
+s[i] == '"' || s[i] == '(' || s[i] == ')' || s[i] == '{' ||
+s[i] == '}')
 {
-	int index = 0;
-
-	while (str[++index])
-	{
-		while (!(str[index] >= 'a') && (str[index] <= 'z'))
-			index++;
-
-		if (str[index - 1] == ' ' ||
-				str[index - 1] == '\t' ||
-				str[index - 1] == '\n' ||
-				str[index - 1] == ',' ||
-				str[index - 1] == ';' ||
-				str[index - 1] == '.' ||
-				str[index - 1] == '!' ||
-				str[index - 1] == '?' ||
-				str[index - 1] == '"' ||
-				str[index - 1] == '(' ||
-				str[index - 1] == ')' ||
-				str[index - 1] == '{' ||
-				str[index - 1] == '}')
-			str[index] -= 32;
-	}
-
-	return (str);
+capitalize = 1;
+}
+}
+return (s);
 }
