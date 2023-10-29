@@ -33,7 +33,7 @@ unsigned int _strspn(char *s, char *accept)
  * Return: pointer to the first occurence of c in s
  */
 
-char *_strchn(char *s, char c)
+char *_strchr(char *s, char c)
 {
 	int i = 0;
 
