@@ -1,34 +1,46 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
- * _strcmp - entry point
- * @s1: pointer
- * @s2: pointer
- * Description: function that compares two strings.
- * Return: int if success
+ * _strspn - gets the length of a prefix substring
+ * @s: string to be searched
+ * @accept: string to be used
+ *
+ * Return: number of bytes in the initial segment of s which are part of accept
  */
-int _strcmp(char *s1, char *s2)
+
+unsigned int _strspn(char *s, char *accept)
 {
-while (*s1 != '\0')
-{
-if (*s1 == *s2)
-{
-s1++;
-s2++;
+	int i = 0;
+	int match = 0;
+
+	while (s[i] != '\0')
+	{
+		if (_strchr(accept, s[i]) == NULL)
+			break;
+		match++;
+		i++;
+	}
+
+	return (match);
 }
-else
+
+/**
+ * _strchr - locates a char in a string
+ * @s: string to be searched
+ * @c: char to be checked
+ *
+ * Return: pointer to the first occurence of c in s
+ */
+
+char *_strchr(char *s, char c)
 {
-if (*s1 > *s2)
-{
-return (*s1 - *s2);
-}
-else if (*s1 < *s2)
-{
-return (*s1 - *s2);
-}
-s1++;
-s2++;
-}
-}
-return (0);
+	int i = 0;
+
+	for (; s[i] != c && s[i] != '\0'; i++);
+
+	if (s[i] == c)
+		return (s + i);
+	else
+		return (NULL);
 }
