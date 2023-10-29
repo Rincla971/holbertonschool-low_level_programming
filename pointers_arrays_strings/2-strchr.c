@@ -1,32 +1,23 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * *_strncpy - entry point
- * @dest: pointer
- * @src: pointer
- * @n: var
- * Description: function that copies a string.
- * Return: string if success
+ * _strchr - locates a char in a string
+ * @s: string to be searched
+ * @c: char to be checked
+ *
+ * Return: pointer to the first occurence of c in s
  */
-char *_strncpy(char *dest, char *src, int n)
-{
-char *tmp1 = dest;
-char *tmp2 = src;
 
-while (src < tmp2 + n && *src != '\0')
+char *_strchr(char *s, char c)
 {
-*dest = *src;
-src++;
-dest++;
-}
-while (src < tmp2 + n)
-{
-*dest = '\0';
-dest++;
-src++;
-}
-dest = tmp1;
-src = tmp2;
+	int i = 0;
 
-return (dest);
+	for (; s[i] != c && s[i] != '\0'; i++)
+		;
+
+	if (s[i] == c)
+		return (s + i);
+	else
+		return (NULL);
 }
