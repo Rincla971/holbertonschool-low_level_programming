@@ -1,54 +1,35 @@
 #include "lists.h"
 
 /**
- * new_node - function
- * @str: const char ptr
- *
- * Return: list_t ptr
+ * free_node - function
+ * @node: list_t ptr
  */
-list_t	*new_node(const char *str)
+void	free_node(list_t *node)
 {
-	list_t	*r;
-	int		x;
-
-	if (!str)
-		return (0);
-	r = (list_t *) malloc(sizeof(list_t));
-	if (!r)
-		return (0);
-	for (x = 0; str[x]; x++)
-		;
-	r->len = x;
-	r->str = strdup(str);
-	r->next = 0;
-	return (r);
+	if (!node)
+		return;
+	free(node->str);
+	free(node);
 }
 
 /**
- * add_node_end - function
- * @head: list_t ptr ptr
- * @str: const char ptr
- *
- * Return: list_t ptr
+ * free_list - function
+ * @head: list_t ptr
  */
-list_t	*add_node_end(list_t **head, const char *str)
+void	free_list(list_t *head)
 {
-	list_t	*r;
-	list_t	*p;
+	list_t	*a;
+	list_t	*b;
 
-	if (head == 0)
-		return (0);
-	r = new_node(str);
-	if (r == 0)
-		return (0);
-	if (*head == 0)
+	if (!head)
+		return;
+	b = head;
+	while (b->next)
 	{
-		*head = r;
-		return (r);
+		a = b;
+		b = b->next;
+		free_node(a);
 	}
-	p = *head;
-	while (p->next)
-		p = p->next;
-	p->next = r;
-	return (r);
+	if (b)
+		free_node(b);
 }
